@@ -18,7 +18,17 @@ public class SecurityConfig {
         .csrf(csrf -> csrf.disable())
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers(HttpMethod.POST, "/stores").hasRole("ADMIN"))
+
+            // STORES
+            .requestMatchers(HttpMethod.POST, "/stores").hasRole("ADMIN, MANAGER")
+            .requestMatchers(HttpMethod.GET, "/stores").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.GET, "/stores/*").hasRole("ADMIN, MANAGER, USER")
+            .requestMatchers(HttpMethod.PATCH, "/stores/*").hasRole("ADMIN, MANAGER")
+            .requestMatchers(HttpMethod.DELETE, "/stores/*").hasRole("ADMIN, MANAGER")
+
+            // USERS
+            .requestMatchers(HttpMethod.GET, "/api/users").hasRole("ADMIN"))
+
         .build();
   }
 }

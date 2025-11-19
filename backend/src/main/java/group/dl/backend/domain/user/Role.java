@@ -8,20 +8,13 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public enum Role {
 
   ADMIN(List.of(
-      new SimpleGrantedAuthority("ROLE_ADMIN"),
-      new SimpleGrantedAuthority("PERM_STORE_READ"),
-      new SimpleGrantedAuthority("PERM_STORE_WRITE"),
-      new SimpleGrantedAuthority("PERM_USER_WRITE"),
-      new SimpleGrantedAuthority("PERM_USER_READ"))),
+      new SimpleGrantedAuthority("ROLE_ADMIN"))),
+
   MANAGER(List.of(
-      new SimpleGrantedAuthority("ROLE_MANAGER"),
-      new SimpleGrantedAuthority("PERM_STORE_READ"),
-      new SimpleGrantedAuthority("PERM_USER_READ"),
-      new SimpleGrantedAuthority("PERM_USER_WRITE"))),
+      new SimpleGrantedAuthority("ROLE_MANAGER"))),
 
   USER(List.of(
-      new SimpleGrantedAuthority("ROLE_USER"),
-      new SimpleGrantedAuthority("PERM_STORE_READ")));
+      new SimpleGrantedAuthority("ROLE_USER")));
 
   private final List<GrantedAuthority> authorities;
 
